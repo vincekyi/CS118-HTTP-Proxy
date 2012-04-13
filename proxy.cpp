@@ -1,21 +1,14 @@
-/* A simple server in the internet domain using TCP
-The port number is passed as an argument */
-
+//PROXY
 #include <iostream>
 #include <string>
-#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include "utilities.h"
 
 using namespace std;
-#define BUFFERSIZE 256
-void error(string msg)
-{
-    cout<<msg<<endl;
-    exit(1);
-}
 
 void dostuff(int newsockfd, int portno, struct in_addr *sin_addr);
 
@@ -39,8 +32,8 @@ int main(int argc, char *argv[])
        	error("ERROR opening socket");
        	return 0;
     }
-    //bzero((char *) &serv_addr, sizeof(serv_addr));
     portno = atoi(argv[1]);
+    bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
     serv_addr.sin_port = htons(portno);
@@ -86,8 +79,15 @@ void dostuff(int newsockfd, int portno, struct in_addr *sin_addr) {
     // Read from socket
    char buffer[BUFFERSIZE];
    int n;
+   bzero(buffer,256);
    n=read(newsockfd, buffer, BUFFERSIZE-1);
    if(n<0)
 	   error("ERROR on read");
+   string temp(buffer);
+   cout<<"Received message: "<<temp<<endl;
+   
+   //write a confirmation message
+   char message[]="Thanks for the message";
+   write(newsockfd, message, strlen(message));
 }
 
