@@ -1,0 +1,21 @@
+
+
+Use terminal to run both programs.
+
+Call 'make' to build the executables.
+
+To run the server:
+                   ./server [port number]
+(you may choose any port number above 1024)
+
+To run the client:
+                   ./client [host name] [port number]
+(host name can be either IP address or name of host you want to connec to)
+(port number is the port that is used by the server)
+
+Example: If you want to run it on just one computer
+1. Open 2 terminals
+2. Run the server.                                 ./server 12222
+3. On a different terminal, run the client.        ./client localhost 12222
+4. Enter a message and press 'Enter'.
+5. To close the server, press "CTRL-C"
