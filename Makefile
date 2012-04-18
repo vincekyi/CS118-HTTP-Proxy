@@ -1,5 +1,5 @@
 all:	
-	g++ -Wall -pedantic proxy.cpp utilities.cpp -o proxy
+	g++ -Wall -pedantic server.cpp utilities.cpp -o server
 	g++ -Wall -pedantic client.cpp utilities.cpp -o client 
 	
 test:	

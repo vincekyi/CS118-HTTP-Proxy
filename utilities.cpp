@@ -14,3 +14,5 @@ void StrToChar(string str, char arr[BUFFERSIZE])
 		arr[i]=str[i];
 	arr[str.size()]='\0';
 }
+
+
